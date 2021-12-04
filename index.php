@@ -17,4 +17,4 @@ $app->router->post('/post-test', function() {
     echo 'post!';
 });
 
-var_dump($app->router->routes);
+$app->run();
