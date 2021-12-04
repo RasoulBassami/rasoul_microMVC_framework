@@ -1,0 +1,20 @@
+{
+    "name": "rasoul-bassami/rasoul-mvc.php",
+    "description": "minimal custom MVC Framework",
+    "type": "phpdotenv",
+    "require": {
+        "vlucas/phpdotenv": "^5.4@dev",
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "license": "MIT",
+    "authors": [{
+        "name": "RasoulBassami",
+        "email": "rasoul.bassami@gmail.com"
+    }],
+    "minimum-stability": "dev"
+}
