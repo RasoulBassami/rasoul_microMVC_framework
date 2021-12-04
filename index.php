@@ -6,15 +6,15 @@ use App\Core\Application;
 $app = new Application();
 
 $app->router->get('/', function() {
-    echo 'home';
+    return 'home';
 });
 
 $app->router->get('/contact', function() {
-    echo 'contact us!';
+    return 'contact us!';
 });
 
 $app->router->post('/post-test', function() {
-    echo 'post!';
+    return 'post!';
 });
 
 $app->run();

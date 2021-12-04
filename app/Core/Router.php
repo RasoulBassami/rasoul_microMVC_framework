@@ -28,5 +28,13 @@ class Router {
     {
         $Path = $this->request->getPath();
         $method = $this->request->getMethod();
+        $callback = $this->routes[$method][$Path] ?? false;
+
+        if(!$callback) {
+            return '404';
+            exit;
+        }
+
+        return call_user_func($callback);
     }
 }
