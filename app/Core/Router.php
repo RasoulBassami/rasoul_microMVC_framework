@@ -8,10 +8,12 @@ class Router {
 
     public array $routes = [];
     public Request $request;
+    public View $view;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, View $view)
     {
         $this->request = $request;
+        $this->view = $view;
     }
 
     public function get($path, $callback)
@@ -33,6 +35,10 @@ class Router {
         if(!$callback) {
             return '404';
             exit;
+        }
+
+        if(is_string($callback)) {
+            return $this->view->renderView($callback);
         }
 
         return call_user_func($callback);
