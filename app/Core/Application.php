@@ -12,7 +12,7 @@ class Application {
 
     public static $ROOT_DIR;
     public static $BASE_DOMAIN;
-    public static $Application;
+    public static $app;
     public Request $request;
     public Router $router;
     public View $view;
@@ -21,7 +21,7 @@ class Application {
     {
         self::$ROOT_DIR = $root;
         self::$BASE_DOMAIN = $domain;
-        self::$Application = $this;
+        self::$app = $this;
         $this->request = new Request();
         $this->view = new View(self::$ROOT_DIR, self::$BASE_DOMAIN);
         $this->router = new Router($this->request, $this->view);

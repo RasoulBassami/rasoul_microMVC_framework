@@ -41,6 +41,12 @@ class Router {
             return $this->view->renderView($callback);
         }
 
+        if(is_array($callback)) {
+
+            # make an instance of string name of controller
+            $callback[0] = new $callback[0](); 
+        }
+
         return call_user_func($callback);
     }
 }
