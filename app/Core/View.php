@@ -18,16 +18,17 @@ class View {
         return $this->public_dir;
     }
 
-    public function renderView($view) {
+    public function renderView($view, $data = []) {
 
-        $content = $this->renderContent($view);
+        $content = $this->renderContent($view, $data);
+       
         $layout = $this->renderLayout();
-
-        return str_replace('{{content}}' , $content, $layout);
+        return str_replace('{{content}}', $content, $layout);
     }
 
-    public function renderContent($view) {
+    public function renderContent($view, $data) {
 
+        extract($data);
         ob_start();
         include_once $this->view_dir . $view . '.php';
         return ob_get_clean();

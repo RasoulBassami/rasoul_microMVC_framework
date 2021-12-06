@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Request;
+use App\Core\Exceptions\NotFoundedException;
 
 class Router {
 
@@ -33,8 +34,7 @@ class Router {
         $callback = $this->routes[$method][$Path] ?? false;
 
         if(!$callback) {
-            return '404';
-            exit;
+            throw new NotFoundedException();
         }
 
         if(is_string($callback)) {

@@ -29,6 +29,12 @@ class Application {
 
     public function run()
     {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        }
+        catch (\Exception $e) {
+            http_response_code($e->getCode());
+            echo $this->view->renderView('errors' , ['e' => $e]);
+        }
     }
 }
