@@ -7,7 +7,7 @@
       <hr>
     </div>
 
-  <form>
+  <form action="" method="post">
     <div class="row g-3">
       <div class="col-sm-6">
         <label class="form-label">First name</label>
@@ -43,7 +43,7 @@
 
       <div class="col-12">
         <label class="form-label">Confirm Password</label>
-        <input type="password" name="passwordConfirm" class="form-control" required="">
+        <input type="password" name="confirmPassword" class="form-control" required="">
         <div class="invalid-feedback">
           Please enter your Password.
         </div>

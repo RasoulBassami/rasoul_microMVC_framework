@@ -7,8 +7,6 @@ use App\Core\Router;
 use App\Core\Controller;
 use App\Core\View;
 
-
-
 class Application {
 
     public static $ROOT_DIR;

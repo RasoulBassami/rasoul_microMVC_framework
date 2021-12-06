@@ -1,5 +1,5 @@
 <main class="form-signin">
-  <form>
+  <form action="" method="post">
     <a href="/">
       <img class="mb-4" src="<?= $this->getPublicDir(); ?>img/bootstrap-logo.svg" alt="" width="72" height="57">
     </a>

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Core\Request;
+use App\Models\User;
 
 class AuthController extends Controller {
 
@@ -19,17 +20,30 @@ class AuthController extends Controller {
             return $this->render('login');
         }
 
-        return 'we should login user here!';  
+        if ($request->isPost()) {
+            return 'we should login user here!';
+        }
     }
 
     public function register(Request $request)
     {
 
         if($request->isGet()) {
+
             return $this->render('register');
         }
 
-        return 'we should register user here!';  
+        if ($request->isPost()) {
+
+            $userModel = new User();
+            $userModel->loadData($request->getBody());
+
+            var_dump($userModel);die;
+            if ($userModel->validate() and $userModel->register()) {
+                return 'success';
+            }
+            return $this->render('register', ['model' => $userModel]);
+        }
     }
     
 }
