@@ -68,3 +68,7 @@ body {
     color: #fff;
     border-bottom-color: #fff;
 }
+
+main.text-left {
+    text-align: left !important;
+}

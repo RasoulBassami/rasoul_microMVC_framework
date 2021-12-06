@@ -30,7 +30,7 @@ class Router {
     public function resolve()
     {
         $Path = $this->request->getPath();
-        $method = $this->request->getMethod();
+        $method = $this->request->method();
         $callback = $this->routes[$method][$Path] ?? false;
 
         if(!$callback) {
@@ -44,9 +44,10 @@ class Router {
         if(is_array($callback)) {
 
             # make an instance of string name of controller
-            $callback[0] = new $callback[0](); 
+            Application::$app->controller = new $callback[0](); 
+            $callback[0] = Application::$app->controller;
         }
 
-        return call_user_func($callback);
+        return call_user_func($callback, $this->request);
     }
 }

@@ -18,7 +18,7 @@ class View {
         return $this->public_dir;
     }
 
-    public function renderView($view, $data = []) {
+    public function renderView(string $view, array $data = []) {
 
         $content = $this->renderContent($view, $data);
        
@@ -36,8 +36,9 @@ class View {
 
     public function renderLayout() {
 
+        $layout = Application::$app->controller->layout;
         ob_start();
-        include_once $this->view_dir . '/layout/layout.php';
+        include_once $this->view_dir . "/layouts/$layout.php";
         return ob_get_clean();
     }
 }

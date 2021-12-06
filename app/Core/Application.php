@@ -4,6 +4,7 @@ namespace App\Core;
 
 use App\Core\Request;
 use App\Core\Router;
+use App\Core\Controller;
 use App\Core\View;
 
 
@@ -15,6 +16,7 @@ class Application {
     public static $app;
     public Request $request;
     public Router $router;
+    public Controller $controller;
     public View $view;
 
     public function __construct($root, $domain)
@@ -25,6 +27,11 @@ class Application {
         $this->request = new Request();
         $this->view = new View(self::$ROOT_DIR, self::$BASE_DOMAIN);
         $this->router = new Router($this->request, $this->view);
+    }
+
+    public function setController(Controller $controller)
+    {
+        $this->controller = $controller;
     }
 
     public function run()
