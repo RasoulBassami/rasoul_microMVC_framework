@@ -38,7 +38,6 @@ class AuthController extends Controller {
             $userModel = new User();
             $userModel->loadData($request->getBody());
 
-            var_dump($userModel);die;
             if ($userModel->validate() and $userModel->register()) {
                 return 'success';
             }

@@ -12,6 +12,18 @@ class User extends Model {
     public string $password;
     public string $confirmPassword;
 
+
+    public function rules()
+    {
+        return [
+            'firstName' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 32]],
+            'lastName' => [self::RULE_REQUIRED],
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8]],
+            'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']]
+        ];
+    }
+
     public function register()
     {
         return true;
