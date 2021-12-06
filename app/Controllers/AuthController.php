@@ -22,9 +22,14 @@ class AuthController extends Controller {
         return 'we should login user here!';  
     }
 
-    public function showContactForm()
+    public function register(Request $request)
     {
-        return $this->render('contact');
+
+        if($request->isGet()) {
+            return $this->render('register');
+        }
+
+        return 'we should register user here!';  
     }
     
 }
