@@ -23,6 +23,10 @@ abstract class Model {
 
     abstract public function rules();
 
+    public function labels() {
+        return [];
+    }
+
     public function validate()
     {
         /* rules = ['firstName' => [REQUIRED, [MAX, 'max' => 32]]]

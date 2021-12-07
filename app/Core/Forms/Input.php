@@ -35,11 +35,11 @@ class Input extends Field{
     
         $html = sprintf(
             '<div class="form-group">
-                <label class="form-label">%s</label>
+                %s
                 %s
                 %s
             </div>',
-            $this->attribute,
+            $this->renderLable(),
             $this->renderInput(),
             $this->errorFeedback()
         );
@@ -47,10 +47,19 @@ class Input extends Field{
         return $html;
     }
 
+    public function renderLable()
+    {
+        if(!empty($this->model->labels())) {
+            $label = $this->model->labels()[$this->attribute] ?? $this->attribute;
+            return sprintf('<label class="form-label">%s</label>', $label);  
+        }
+        return '';
+    }
+
     public function renderInput() {
 
         return sprintf(
-            '<input type="%s" name="%s" value="%s" class="form-control%s">',
+            '<input type="%s" name="%s" value="%s"  class="form-control%s">',
             $this->type,
             $this->attribute,
             $this->model->{$this->attribute} ?? '',

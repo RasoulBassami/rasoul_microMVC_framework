@@ -24,6 +24,16 @@ class User extends Model {
         ];
     }
 
+    public function labels() {
+        return [
+            'firstName' => 'First Name',
+            'lastName' => 'Last Name',
+            'email' => 'Email Address',
+            'password' => 'Password',
+            'confirmPassword' => 'Confirm Password'
+        ];
+    }
+
     public function register()
     {
         return true;

@@ -24,6 +24,6 @@
     <?= $form->input($model, 'password')->passwordInput();?> 
     <?= $form->input($model, 'confirmPassword')->passwordInput();?>
 
-    <button class="w-100 btn btn-primary btn-lg" type="submit">Register Now</button>
+    <button class="w-100 mt-3 btn btn-primary btn-lg" type="submit">Register Now</button>
   <?php $form::end(); ?>
 </main>
