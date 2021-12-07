@@ -9,8 +9,16 @@ $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 $base_domain = $_ENV['BASE_DOMAIN'];
 
-$app = new Application(dirname(__DIR__) , $base_domain);
 
+$config = [
+    'db' => [
+        'dsn' => $_ENV['DB_DSN'],
+        'username' => $_ENV['DB_USERNAME'],
+        'password' => $_ENV['DB_PASSWORD']
+    ]
+];
+
+$app = new Application(dirname(__DIR__) , $base_domain, $config);
 
 $app->router->get('/', [FrontController::class, 'home']);
 
