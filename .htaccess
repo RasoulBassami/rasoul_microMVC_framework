@@ -6,6 +6,7 @@ RewriteRule ^public/ - [L]
 # Static resources if they exist
 RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
 RewriteRule (.+) public/$1 [L]
+RewriteCond %{REQUEST_URI} !migration\.php$
 
 # Route all other requests
 RewriteRule (.*) public/index.php?path=$1 [L,QSA]

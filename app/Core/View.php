@@ -36,7 +36,7 @@ class View {
 
     public function renderLayout() {
 
-        $layout = Application::$app->controller->layout;
+        $layout = Application::$app->controller->layout ?? 'main';
         ob_start();
         include_once $this->view_dir . "/layouts/$layout.php";
         return ob_get_clean();
