@@ -8,7 +8,7 @@ use App\Core\Application;
 abstract class DbModel extends Model
 {
     
-    abstract public function tableName ();
+    abstract static public function tableName ();
 
     abstract public function attributes ();
 

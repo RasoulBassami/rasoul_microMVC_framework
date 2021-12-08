@@ -9,6 +9,7 @@ abstract class Model {
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
+    public const RULE_UNIQUE = 'unique';
 
     public array $errors = [];
 
@@ -65,6 +66,21 @@ abstract class Model {
                 if($ruleName === self::RULE_MATCH and $value !== $this->{$rule['match']}) {
                     $this->addError($attribute, $ruleName, $rule);
                 }
+
+                if($ruleName === self::RULE_UNIQUE) {
+                    $className = $rule['class'];
+                    $table_name = $className::tableName();
+                    
+                    $sql = "SELECT * FROM $table_name WHERE $attribute = :attr";
+                    $statement = Application::$app->db->pdo->prepare($sql);
+                    $statement->bindParam(":attr", $value);
+                    $statement->execute();
+                    $result = $statement->fetchObject();
+
+                    if($result) {
+                        $this->addError($attribute, $ruleName, ['field' => $attribute]);
+                    }
+                }
             }
         }
 
@@ -87,6 +103,7 @@ abstract class Model {
             'min' => 'This field cant be less than {min} characters.',
             'max' => 'This field cant be more than {max} characters.',
             'match' => 'This field should be same as {match}.',
+            'unique' => 'This {field} is already taken.'
         ];
     }
 

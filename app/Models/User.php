@@ -18,7 +18,7 @@ class User extends DbModel {
     public string $confirmPassword;
     public int $status;
 
-    public function tableName() {
+    public static function tableName() {
         return 'users';
     }
 
@@ -31,7 +31,9 @@ class User extends DbModel {
         return [
             'firstName' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 32]],
             'lastName' => [self::RULE_REQUIRED],
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, 
+                    [self::RULE_UNIQUE, 'class' => self::class]
+                ],
             'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8]],
             'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']]
         ];
