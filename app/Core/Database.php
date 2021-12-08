@@ -38,7 +38,7 @@ class Database {
             include_once Application::$ROOT_DIR . '/app/Migrations/' . $migration;
             $className = pathinfo($migration, PATHINFO_FILENAME);
 
-            echo "$className: ";
+            echo $className ."<br>";
             $instance = new $className();
             $instance->up();
 
