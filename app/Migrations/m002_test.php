@@ -1,6 +1,6 @@
 <?php
 
-class m001_users {
+class m002_test {
 
     public function up()
     {
