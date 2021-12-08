@@ -62,7 +62,7 @@ abstract class Model {
                     $this->addError($attribute, $ruleName, $rule);
                 }
 
-                if($ruleName === self::RULE_MATCH and $value !== $rule['match']) {
+                if($ruleName === self::RULE_MATCH and $value !== $this->{$rule['match']}) {
                     $this->addError($attribute, $ruleName, $rule);
                 }
             }

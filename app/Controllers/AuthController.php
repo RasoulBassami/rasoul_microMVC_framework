@@ -34,8 +34,12 @@ class AuthController extends Controller {
 
             $userModel->loadData($request->getBody());
 
-            if ($userModel->validate() and $userModel->register()) {
+            if ($userModel->validate() and $userModel->save()) {
                 return 'success';
+            }
+
+            if ($userModel->validate()) {
+                $userModel->decryptPassword();
             }
         }
 

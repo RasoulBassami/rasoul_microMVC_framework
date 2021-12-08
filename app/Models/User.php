@@ -2,16 +2,29 @@
 
 namespace App\Models;
 
-use App\Core\Model;
+use App\Core\DbModel;
 
-class User extends Model {
+class User extends DbModel {
+
+    const STATUS_INACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_DELETED = 2;
+
 
     public string $firstName;
     public string $lastName;
     public string $email;
     public string $password;
     public string $confirmPassword;
+    public int $status;
 
+    public function tableName() {
+        return 'users';
+    }
+
+    public function attributes() {
+        return ['firstName', 'lastName', 'email', 'password', 'status'];
+    }
 
     public function rules()
     {
@@ -34,8 +47,15 @@ class User extends Model {
         ];
     }
 
-    public function register()
+    public function save()
     {
-        return true;
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->status = self::STATUS_INACTIVE;
+        return parent::save();
+    }
+
+    public function decryptPassword()
+    {
+        $this->password = $this->confirmPassword;
     }
 }
