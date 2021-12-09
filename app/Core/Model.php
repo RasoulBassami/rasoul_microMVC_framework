@@ -28,6 +28,10 @@ abstract class Model {
         return [];
     }
 
+    public function getLabel($attribute) {
+        return $this->labels()[$attribute] ?? $attribute;
+    }
+
     public function validate()
     {
         /* rules = ['firstName' => [REQUIRED, [MAX, 'max' => 32]]]
@@ -78,7 +82,7 @@ abstract class Model {
                     $result = $statement->fetchObject();
 
                     if($result) {
-                        $this->addError($attribute, $ruleName, ['field' => $attribute]);
+                        $this->addError($attribute, $ruleName, ['field' => $this->getLabel($attribute)]);
                     }
                 }
             }
@@ -91,7 +95,8 @@ abstract class Model {
     {
         $message = $this->errorMessages()[$ruleName] ?? '';
         foreach($params as $key => $value) {
-            $message = str_replace("{{$key}}", $value, $message);
+            $label = $this->getLabel($value);
+            $message = str_replace("{{$key}}", $label, $message);
         }
         $this->errors[$attribute][] = $message;
     }
