@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Core\Application;
 use App\Core\Controller;
 use App\Core\Request;
 use App\Models\User;
@@ -35,7 +36,9 @@ class AuthController extends Controller {
             $userModel->loadData($request->getBody());
 
             if ($userModel->validate() and $userModel->save()) {
-                return 'success';
+
+                Application::$app->session->setFlashMessage('success', 'welcome to our site');
+                Application::$app->response->redirect('/');
             }
 
             if ($userModel->validate()) {
