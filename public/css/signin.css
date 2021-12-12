@@ -52,6 +52,15 @@ body {
     }
 }
 
-main.text-left {
-    text-align: left !important;
+.form-signin form {
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.form-signin form label {
+    margin-bottom: 0.2rem;
+}
+
+.form-signin form .form-group {
+    margin-bottom: 1rem;
 }

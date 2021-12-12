@@ -39,4 +39,18 @@ abstract class DbModel extends Model
         return Application::$app->db->pdo->prepare($sql);
     }
 
+    public function findOne(array $where)
+    {
+        $tableName = $this->tableName();
+        $attributes = array_keys($where);
+        // ['firstName' => $firstName, 'email' => $email];
+        $condition = implode('AND ', array_map(fn($attr) => "$attr = :$attr" , $attributes));
+        $statment = self::prepare("SELECT * FROM $tableName WHERE $condition");
+        foreach ($where as $attr => $value) {
+            $statment->bindParam(":$attr", $value);
+        }
+        $statment->execute();
+        return $statment->fetchObject(static::class);
+    }
+
 }
