@@ -26,6 +26,15 @@ class User extends DbModel {
         return ['firstName', 'lastName', 'email', 'password', 'status'];
     }
 
+    public static function primaryKey () {
+        return 'id';
+    }
+    
+    public function displayName () {
+        return $this->firstName . ' ' . $this->lastName;
+    }
+
+
     public function rules()
     {
         return [

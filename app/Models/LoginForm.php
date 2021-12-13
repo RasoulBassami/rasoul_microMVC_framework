@@ -3,20 +3,13 @@
 namespace App\Models;
 
 use App\Core\Application;
-use App\Core\DbModel;
+use App\Core\Model;
+use App\Models\User;
 
-class LoginForm extends DbModel {
+class LoginForm extends Model {
 
     public string $email;
     public string $password;
-
-    public static function tableName() {
-        return 'users';
-    }
-
-    public function attributes() {
-        return ['email', 'password'];
-    }
 
     public function rules()
     {
@@ -35,7 +28,7 @@ class LoginForm extends DbModel {
 
     public function login() {
 
-        $user = $this->findOne(['email' => $this->email]);
+        $user = User::findOne(['email' => $this->email]);
         if (!$user) {
             $this->addError('email', 'We can\'t find a user with that e-mail address');
             return false;
@@ -45,7 +38,7 @@ class LoginForm extends DbModel {
             return false;
         }
 
-        return true;
+        return Application::$app->login($user);
     }
 
 }

@@ -1,3 +1,4 @@
+<?php use App\Core\Application; ?>
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -31,7 +32,14 @@
         <nav class="nav nav-masthead justify-content-center float-md-end">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
           <a class="nav-link" href="/contact">Contact</a>
-          <a class="nav-link" href="/login">login</a>
+          <?php if(Application::isGuest()): ?>
+            <a class="nav-link" href="/login">login</a>
+          <?php else: ?>
+            <a class="nav-link" href="/profile">
+              <?= Application::$app->user->displayName(); ?>
+            </a>
+            <a class="nav-link" href="/logout">Logout</a>
+          <?php endif; ?>
         </nav>
       </div>
     </header>

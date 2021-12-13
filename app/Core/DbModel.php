@@ -12,6 +12,10 @@ abstract class DbModel extends Model
 
     abstract public function attributes ();
 
+    abstract static public function primaryKey ();
+
+    abstract public function displayName ();
+
     public function save()
     {
         $tableName = $this->tableName();
@@ -39,9 +43,9 @@ abstract class DbModel extends Model
         return Application::$app->db->pdo->prepare($sql);
     }
 
-    public function findOne(array $where)
+    public static function findOne(array $where)
     {
-        $tableName = $this->tableName();
+        $tableName = static::tableName();
         $attributes = array_keys($where);
         // ['firstName' => $firstName, 'email' => $email];
         $condition = implode('AND ', array_map(fn($attr) => "$attr = :$attr" , $attributes));

@@ -25,13 +25,18 @@ class AuthController extends Controller {
             $loginForm->loadData($request->getBody());
 
             if ($loginForm->validate() and $loginForm->login()) {
-
                 Application::$app->session->setFlashMessage('success', 'welcome to our site');
                 Application::$app->response->redirect('/');
             }
         }
 
         return $this->render('login', ['model' => $loginForm]);
+    }
+
+    public function logout() {
+        Application::$app->logout();
+        Application::$app->session->setFlashMessage('success', 'You have been successfully logged out.');
+        Application::$app->response->redirect('/');
     }
 
     public function register(Request $request)
