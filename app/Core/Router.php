@@ -46,6 +46,11 @@ class Router {
             # make an instance of string name of controller
             Application::$app->controller = new $callback[0](); 
             $callback[0] = Application::$app->controller;
+            Application::$app->controller->action = $callback[1];
+
+            foreach (Application::$app->controller->getMiddlewares() as $middleware) {
+                $middleware->execute();
+            }
         }
 
         return call_user_func($callback, $this->request);

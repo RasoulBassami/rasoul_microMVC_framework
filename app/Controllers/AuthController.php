@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\Application;
 use App\Core\Controller;
+use App\Core\Middlewares\AuthMiddleware;
 use App\Core\Request;
 use App\Models\User;
 use App\Models\LoginForm;
@@ -13,6 +14,7 @@ class AuthController extends Controller {
     public function __construct()
     {
         $this->layout = 'auth';
+        $this->registerMiddlewares(new AuthMiddleware(['profile']));
     }
 
     public function login(Request $request)
@@ -59,6 +61,12 @@ class AuthController extends Controller {
         }
 
         return $this->render('register', ['model' => $userModel]);
+    }
+
+    public function profile(Request $request)
+    {
+        $this->layout = 'main';
+        return $this->render('profile');
     }
     
 }
