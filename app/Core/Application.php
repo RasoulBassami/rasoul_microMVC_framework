@@ -15,6 +15,7 @@ class Application {
 
     public static $ROOT_DIR;
     public static $BASE_DOMAIN;
+    public static $SITE_NAME;
     public static $app;
     public Request $request;
     public Response $response;
@@ -30,10 +31,11 @@ class Application {
     {
         self::$ROOT_DIR = $root;
         self::$BASE_DOMAIN = $domain;
+        self::$SITE_NAME = $config['site_name'];
         self::$app = $this;
         $this->request = new Request();
         $this->response = new Response();
-        $this->view = new View(self::$ROOT_DIR, self::$BASE_DOMAIN);
+        $this->view = new View(self::$ROOT_DIR, self::$BASE_DOMAIN, self::$SITE_NAME);
         $this->router = new Router($this->request, $this->view);
         $this->session = new Session();
 

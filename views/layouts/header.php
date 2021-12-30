@@ -19,7 +19,7 @@
 
   <!-- Custom styles for this template -->
   <link href="<?= $this->getPublicDir(); ?>css/style.css" rel="stylesheet">
-  <title>Cover Template · Bootstrap v5.1</title>
+  <title><?= $this->title; ?></title>
 
 </head>
 

@@ -6,11 +6,14 @@ class View {
 
     protected string $view_dir;
     protected string $public_dir;
+    protected string $site_name;
+    public string $title;
 
-    public function __construct($root, $domain)
+    public function __construct($root, $domain, $site_name)
     {
         $this->view_dir = $root . '/views/';
         $this->public_dir = $domain . '/public/';
+        $this->site_name = $site_name;
     }
 
     public function getPublicDir()
@@ -29,6 +32,8 @@ class View {
     public function renderContent($view, $data) {
 
         extract($data);
+        // $data can also contain a title
+        $this->title = $title ?? $this->site_name;
         ob_start();
         include_once $this->view_dir . $view . '.php';
         return ob_get_clean();

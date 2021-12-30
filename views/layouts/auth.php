@@ -18,7 +18,7 @@
   
     <!-- Custom styles for this template -->
     <link href="<?= $this->getPublicDir(); ?>css/signin.css" rel="stylesheet">
-    <title>Signin Template · Bootstrap v5.1</title>
+    <title><?= $this->title; ?></title>
 
   </head>
   <body class="text-center">

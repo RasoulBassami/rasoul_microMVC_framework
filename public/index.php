@@ -17,6 +17,7 @@ $config = [
         'username' => $_ENV['DB_USERNAME'],
         'password' => $_ENV['DB_PASSWORD']
     ],
+    'site_name' => 'Rasoul MVC',
     'userClass' => User::class
 ];
 

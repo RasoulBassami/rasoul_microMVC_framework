@@ -32,7 +32,7 @@ class AuthController extends Controller {
             }
         }
 
-        return $this->render('login', ['model' => $loginForm]);
+        return $this->render('login', ['model' => $loginForm, 'title' => 'Login']);
     }
 
     public function logout() {
@@ -60,13 +60,13 @@ class AuthController extends Controller {
             }
         }
 
-        return $this->render('register', ['model' => $userModel]);
+        return $this->render('register', ['model' => $userModel, 'title' => 'Register']);
     }
 
     public function profile(Request $request)
     {
         $this->layout = 'main';
-        return $this->render('profile');
+        return $this->render('profile', ['title' => 'Profile']);
     }
     
 }

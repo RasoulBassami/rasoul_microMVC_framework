@@ -13,7 +13,7 @@ class FrontController extends Controller {
 
     public function showContactForm()
     {
-        return $this->render('contact');
+        return $this->render('contact', ['title' => 'Contact Us']);
     }
     
 }
