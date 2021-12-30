@@ -4,6 +4,7 @@ namespace App\Core\Forms;
 
 use App\Core\Model;
 use App\Core\Forms\Input;
+use App\Core\Forms\Textarea;
 
 class Form {
 
@@ -23,5 +24,9 @@ class Form {
         return new Input($model, $attribute);
     }
 
+    public function textarea(Model $model, string $attribute)
+    {
+        return new Textarea($model, $attribute);
+    }
 
 }

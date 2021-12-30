@@ -2,7 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Core\Application;
+use App\Core\Request;
 use App\Core\Controller;
+use App\Models\ContactForm;
 
 class FrontController extends Controller {
 
@@ -11,9 +14,20 @@ class FrontController extends Controller {
         return $this->render('home');
     }
 
-    public function showContactForm()
+    public function contact(Request $request)
     {
-        return $this->render('contact', ['title' => 'Contact Us']);
+        $contactForm = new ContactForm();
+        if ($request->isPost()) {
+
+            $contactForm->loadData($request->getBody());
+
+            if ($contactForm->validate() and $contactForm->send()) {
+                Application::$app->session->setFlashMessage('success', 'Thanks for cantacting.');
+                Application::$app->response->redirect('/');
+            }
+        }
+
+        return $this->render('contact', ['model' => $contactForm, 'title' => 'Contact Us']);
     }
-    
+
 }

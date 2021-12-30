@@ -25,8 +25,8 @@ $app = new Application(dirname(__DIR__) , $base_domain, $config);
 
 $app->router->get('/', [FrontController::class, 'home']);
 
-$app->router->get('/contact', [FrontController::class, 'showContactForm']);
-$app->router->post('/contact', [FrontController::class, 'handleContact']);
+$app->router->get('/contact', [FrontController::class, 'contact']);
+$app->router->post('/contact', [FrontController::class, 'contact']);
 
 $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
